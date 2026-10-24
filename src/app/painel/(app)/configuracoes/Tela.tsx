@@ -91,13 +91,13 @@ function OperacaoForm() {
 
 function MercadoPagoForm() {
   const { chamar } = usePainel();
-  const [status, setStatus] = useState<{ configurado: boolean; modoTeste: boolean } | null>(null);
+  const [status, setStatus] = useState<{ configurado: boolean; modoTeste: boolean; simulado: boolean } | null>(null);
   const [token, setToken] = useState("");
   const [msg, setMsg] = useState<{ ok: boolean; texto: string } | null>(null);
   const [salvando, setSalvando] = useState(false);
 
   useEffect(() => {
-    chamar<{ configurado: boolean; modoTeste: boolean }>("/api/painel/pagamentos/mercadopago")
+    chamar<{ configurado: boolean; modoTeste: boolean; simulado: boolean }>("/api/painel/pagamentos/mercadopago")
       .then(setStatus)
       .catch((e: ApiErro) => setMsg({ ok: false, texto: e.message }));
   }, [chamar]);
@@ -121,7 +121,7 @@ function MercadoPagoForm() {
     if (!confirm("Desconectar o Mercado Pago? O Pix sai do cardápio.")) return;
     try {
       await chamar("/api/painel/pagamentos/mercadopago", { metodo: "DELETE" });
-      setStatus({ configurado: false, modoTeste: false });
+      setStatus((s) => ({ configurado: false, modoTeste: false, simulado: s?.simulado ?? false }));
     } catch (err) {
       setMsg({ ok: false, texto: (err as ApiErro).message });
     }
@@ -134,6 +134,12 @@ function MercadoPagoForm() {
         O dinheiro do Pix cai direto na conta da loja. Cole o <strong>access token</strong> da sua conta do Mercado Pago
         (em Seu negócio → Configurações → Credenciais). Ele fica guardado criptografado e não aparece de novo aqui.
       </p>
+      {status?.simulado && (
+        <p className="rounded-lg border-2 border-dashed border-amber-500 bg-amber-50 p-3 text-sm text-amber-900">
+          <strong>Ambiente de teste com Pix simulado.</strong> Cole qualquer texto (ex.: <code>teste</code>) para ligar o Pix.
+          Nenhuma cobrança real é criada; na tela do pedido aparecem botões para simular o pagamento.
+        </p>
+      )}
       {status && (
         <p className="text-sm">
           Situação:{" "}

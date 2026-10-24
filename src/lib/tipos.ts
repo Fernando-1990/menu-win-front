@@ -26,6 +26,8 @@ export interface LojaInfo {
   aceitaDelivery: boolean;
   aceitaConsumoLocal: boolean;
   aceitaPix: boolean;
+  /** Ambiente de teste: o Pix é de mentira e a tela do pedido mostra botões para simular o pagamento. */
+  pixSimulado: boolean;
   aceitaPagarNoCaixa: boolean;
   taxaEntrega: number;
   pedidoMinimo: number;

@@ -16,7 +16,7 @@ const FINAIS: StatusPedido[] = ["ENTREGUE", "CANCELADO"];
 /** Acompanhamento pelo cliente: consulta a cada 4s até o pedido terminar. */
 export default function AcompanharPedido() {
   const { id } = useParams<{ id: string }>();
-  const { slug } = useLoja();
+  const { slug, cardapio } = useLoja();
   const [pedido, setPedido] = useState<PedidoStatus | null>(null);
   const [erro, setErro] = useState<string | null>(null);
   const [qrCode] = useState<string | null>(() => {
@@ -88,6 +88,9 @@ export default function AcompanharPedido() {
               Esta tela atualiza sozinha quando o pagamento for confirmado.
             </p>
           )}
+          {cardapio?.loja.pixSimulado && (
+            <SimuladorPix slug={slug} pedidoId={id} onSimulado={(p) => setPedido(p)} />
+          )}
         </section>
       ) : (
         <ol className="mt-6 flex flex-col gap-3" aria-label="Andamento">
@@ -109,5 +112,41 @@ export default function AcompanharPedido() {
 
       <Link href={`/${slug}`} className="mt-8 block text-center text-marca">Voltar ao cardápio</Link>
     </main>
+  );
+}
+
+/**
+ * Só aparece com o Pix simulado (API em dev). Faz o papel do banco: a API processa pelo
+ * mesmo caminho do webhook real do Mercado Pago.
+ */
+function SimuladorPix({ slug, pedidoId, onSimulado }: { slug: string; pedidoId: string; onSimulado: (p: PedidoStatus) => void }) {
+  const [erro, setErro] = useState<string | null>(null);
+  const [enviando, setEnviando] = useState(false);
+
+  async function simular(status: "APROVADO" | "EXPIRADO") {
+    setErro(null);
+    setEnviando(true);
+    try {
+      onSimulado(await api<PedidoStatus>(`/api/public/lojas/${slug}/simulador-pix/${pedidoId}?status=${status}`, { metodo: "POST" }));
+    } catch (e) {
+      setErro((e as ApiErro).message);
+    } finally {
+      setEnviando(false);
+    }
+  }
+
+  return (
+    <div className="mt-4 rounded-lg border-2 border-dashed border-amber-500 bg-amber-50 p-3">
+      <p className="text-sm font-semibold text-amber-900">Ambiente de teste: este Pix é simulado e não pode ser pago.</p>
+      <div className="mt-2 flex gap-2">
+        <button disabled={enviando} onClick={() => simular("APROVADO")} className="flex-1 rounded-lg bg-green-700 px-3 py-2 text-sm font-semibold text-white disabled:opacity-50">
+          Simular pagamento aprovado
+        </button>
+        <button disabled={enviando} onClick={() => simular("EXPIRADO")} className="flex-1 rounded-lg border border-stone-400 px-3 py-2 text-sm disabled:opacity-50">
+          Simular Pix expirado
+        </button>
+      </div>
+      {erro && <p role="alert" className="mt-2 text-sm text-red-700">{erro}</p>}
+    </div>
   );
 }

@@ -32,6 +32,8 @@ Next.js 16.4, React 19.3, TypeScript, Tailwind 4, Vitest. SSE: `@microsoft/fetch
   (Next 16 bloqueia dado de URL fora de Suspense no pré-render).
 - Páginas do painel: `page.tsx` de servidor com `export const instant = false` + `Tela.tsx` cliente.
   `instant` não pode ficar em arquivo "use client" e precisa estar na página (não basta no layout).
+- Pix simulado: quando a API informa `loja.pixSimulado` (só em dev), o checkout rotula "simulado" e a tela do
+  pedido mostra botões que chamam `POST /simulador-pix/{id}`. Nunca aparece com a API em produção.
 - `/painel` é rota fixa: uma loja não pode ter o slug "painel" (a API ainda não bloqueia; ver pendências).
 
 ## Armadilhas já encontradas

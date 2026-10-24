@@ -15,7 +15,9 @@ import { useLoja } from "../LojaContexto";
 /** Formas de pagamento que fazem sentido para cada tipo de atendimento, conforme o que a loja liga. */
 function metodosPara(tipo: TipoEntrega, loja: LojaInfo): { valor: MetodoPagamento; rotulo: string }[] {
   const lista: { valor: MetodoPagamento; rotulo: string }[] = [];
-  if (loja.aceitaPix) lista.push({ valor: "PIX", rotulo: "Pix agora (pelo celular)" });
+  if (loja.aceitaPix) {
+    lista.push({ valor: "PIX", rotulo: loja.pixSimulado ? "Pix agora (simulado · ambiente de teste)" : "Pix agora (pelo celular)" });
+  }
   if (tipo === "DELIVERY") {
     lista.push({ valor: "DINHEIRO_NA_ENTREGA", rotulo: "Dinheiro na entrega" }, { valor: "CARTAO_NA_ENTREGA", rotulo: "Cartão na entrega" });
   } else if (loja.aceitaPagarNoCaixa) {
