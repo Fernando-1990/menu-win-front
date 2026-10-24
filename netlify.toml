@@ -1,0 +1,8 @@
+# Deploy na Netlify (detecta o Next.js e usa o adapter dela). Passo a passo: docs/DEPLOY.md da API.
+[build]
+  # NEXT_PUBLIC_API_URL fica fixada no build; sem ela o site chamaria localhost:8080 e nada funcionaria.
+  command = "test -n \"$NEXT_PUBLIC_API_URL\" || { echo 'Defina NEXT_PUBLIC_API_URL nas variáveis do site (Netlify)'; exit 1; }; npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"

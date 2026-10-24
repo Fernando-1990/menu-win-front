@@ -34,6 +34,8 @@ Next.js 16.4, React 19.3, TypeScript, Tailwind 4, Vitest. SSE: `@microsoft/fetch
   `instant` não pode ficar em arquivo "use client" e precisa estar na página (não basta no layout).
 - Pix simulado: quando a API informa `loja.pixSimulado` (só em dev), o checkout rotula "simulado" e a tela do
   pedido mostra botões que chamam `POST /simulador-pix/{id}`. Nunca aparece com a API em produção.
+- Deploy na Netlify (`netlify.toml`); passo a passo em `docs/DEPLOY.md` da API. O build falha sem
+  `NEXT_PUBLIC_API_URL` de propósito (senão o site publicado chamaria `localhost:8080`).
 - `/painel` é rota fixa: uma loja não pode ter o slug "painel" (a API ainda não bloqueia; ver pendências).
 
 ## Armadilhas já encontradas
