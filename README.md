@@ -22,6 +22,7 @@ npm run dev                  # http://localhost:3000
 | `/{slug}/checkout` | Cliente | Comer aqui / retirar / entrega, dados, pagamento |
 | `/{slug}/pedido/{id}` | Cliente | Acompanhamento (e Pix: QR e copia-e-cola) |
 | `/painel/cozinha` | Todos do painel | Pedidos em tempo real (SSE), andamento, “recebi o pagamento” |
+| `/painel/historico` | Dono e gerente | Pedidos por período e situação, resumo de vendas e detalhe com linha do tempo |
 | `/painel/cardapio` | Dono e gerente | Categorias, produtos e grupos de adicionais |
 | `/painel/configuracoes` | Dono | Como a loja atende e conta do Mercado Pago |
 

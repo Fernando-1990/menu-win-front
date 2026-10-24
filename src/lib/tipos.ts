@@ -166,6 +166,58 @@ export interface GrupoPainel {
   opcoes: { id: string; nome: string; preco: number; disponivel: boolean; ordem: number }[];
 }
 
+// ---------------------------------------------------------------- histórico (DONO/GERENTE)
+
+export interface Historico {
+  de: string;
+  ate: string;
+  resumo: { pedidos: number; vendido: number; recebido: number; aReceber: number; cancelados: number };
+  pedidos: PedidoResumo[];
+  pagina: number;
+  totalFiltrado: number;
+  temMais: boolean;
+}
+
+export interface PedidoResumo {
+  id: string;
+  numero: number;
+  criadoEm: string;
+  status: StatusPedido;
+  tipoEntrega: TipoEntrega;
+  clienteNome: string | null;
+  total: number;
+  metodoPagamento: MetodoPagamento | null;
+  statusPagamento: StatusPagamento | null;
+}
+
+export interface PedidoDetalhe {
+  id: string;
+  numero: number;
+  criadoEm: string;
+  status: StatusPedido;
+  tipoEntrega: TipoEntrega;
+  clienteNome: string | null;
+  clienteTelefone: string | null;
+  endereco: Endereco | null;
+  observacao: string | null;
+  motivoCancelamento: string | null;
+  subtotal: number;
+  taxaEntrega: number;
+  desconto: number;
+  total: number;
+  itens: PedidoCozinha["itens"];
+  pagamento: {
+    metodo: MetodoPagamento;
+    status: StatusPagamento;
+    valor: number;
+    trocoPara: number | null;
+    pagoEm: string | null;
+    recebidoPelaLoja: boolean;
+  } | null;
+  /** quem: nome de quem mudou no painel; null = cliente ou sistema (pedido, Pix). */
+  linhaDoTempo: { status: StatusPedido; quando: string; quem: string | null }[];
+}
+
 export interface Operacao {
   aceitaRetirada: boolean;
   aceitaDelivery: boolean;

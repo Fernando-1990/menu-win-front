@@ -8,6 +8,7 @@ import { PainelProvider, usePainel } from "./PainelContexto";
 
 const LINKS: { href: string; rotulo: string; papeis: Papel[] }[] = [
   { href: "/painel/cozinha", rotulo: "Pedidos", papeis: ["DONO", "GERENTE", "COZINHA"] },
+  { href: "/painel/historico", rotulo: "Histórico", papeis: ["DONO", "GERENTE"] },
   { href: "/painel/cardapio", rotulo: "Cardápio", papeis: ["DONO", "GERENTE"] },
   { href: "/painel/configuracoes", rotulo: "Configurações", papeis: ["DONO"] },
 ];
