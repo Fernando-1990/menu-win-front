@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* --cor: cor primária da loja (definida no layout do cardápio). Padrão = vermelho do Menu Win. */
+:root {
+  --cor: #c0392b;
+  --background: #f6f5f3;
+  --foreground: #1c1917;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-marca: var(--cor);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* foco visível para teclado em tudo que é clicável */
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid var(--cor);
+  outline-offset: 2px;
+}
