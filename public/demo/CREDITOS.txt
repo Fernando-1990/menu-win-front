@@ -1,0 +1,20 @@
+Fotos do cardápio de demonstração (loja padaria-demo). Todas do Wikimedia Commons (commons.wikimedia.org),
+redimensionadas para 960 px de largura. Uso só para demonstração; loja de verdade usa as próprias fotos.
+
+pao-frances.jpg      "Bread in baskets, Salvador, Brazil, 2011" - Rosino - CC BY-SA 2.0
+pao-de-queijo.jpg    "Pão de Queijo - cheese bread" - Jonathan Wilkins - CC BY-SA 3.0
+croissant.jpg        "Croissant (8471497898)" - Stephanie (Flickr) - CC BY 2.0
+pao-italiano.jpg     "Slices of bread" - Daniel Sone / National Cancer Institute - domínio público
+pao-na-chapa.jpg     "Pão na chapa 2" - Melsj - CC0
+misto-quente.jpg     "Sand. Mixto - Extra queso" - Tamorlan - CC BY-SA 3.0
+coxinha.jpg          "Coxinha - iguaria brasileira 01" - Sintegrity - CC BY-SA 4.0
+esfiha.jpg           "Sfiha2" - Basel15 - domínio público
+quiche.jpg           "Slice of Quiche (Unsplash)" - timothy muza - CC0
+bolo-de-cenoura.jpg  "Bolo de cenoura com chocolate e granulado" - Sintegrity - CC BY-SA 4.0
+sonho.jpg            "Berliner Pfannkuchen 5" - Sebastian Koppehel - CC BY 4.0
+brigadeiro.jpg       "Brigadeiro enrolado" - Márcia Cristina Machado - CC BY-SA 4.0
+expresso.jpg         "Espresso shot close-up" - Deerpeter - CC BY-SA 4.0
+cappuccino.jpg       "A Cappuccino at Amante" - Peachyeung316 - CC BY-SA 4.0
+suco-de-laranja.jpg  "Zumo de naranja" - Carmenborass - CC BY-SA 4.0
+
+Licenças: https://creativecommons.org/licenses/ (CC BY / CC BY-SA exigem crédito ao autor, como acima).
