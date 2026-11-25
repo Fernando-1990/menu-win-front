@@ -25,6 +25,7 @@ npm run dev                  # http://localhost:3000
 | `/painel/historico` | Dono e gerente | Pedidos por período e situação, resumo de vendas e detalhe com linha do tempo |
 | `/painel/cardapio` | Dono e gerente | Categorias, produtos e grupos de adicionais |
 | `/painel/configuracoes` | Dono | Como a loja atende e conta do Mercado Pago |
+| `/painel/conta` | Todos do painel | Dados do usuário e troca de senha (link no nome, no topo) |
 
 ## Verificações
 ```bash

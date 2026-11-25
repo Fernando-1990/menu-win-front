@@ -14,7 +14,8 @@ A API e as regras de negócio ficam no repositório `menu-win` (pasta irmã `../
   do Next que não seja trivial: há mudanças incompatíveis com o Next 15 (ver AGENTS.md).
 
 ## Stack
-Next.js 16.4, React 19.3, TypeScript, Tailwind 4, Vitest. SSE: `@microsoft/fetch-event-source`.
+Next.js 16.4 (16.4.6+: o `next build` recusa versões com falha de segurança conhecida), React 19.3, TypeScript,
+Tailwind 4, Vitest. SSE: `@microsoft/fetch-event-source`.
 
 ## Decisões (manter)
 - Chamadas direto do navegador para a API (`NEXT_PUBLIC_API_URL`); a API libera a origem em `CORS_ORIGENS`.

@@ -47,7 +47,14 @@ function Navegacao() {
               Ver cardápio
             </a>
           )}
-          <span className="text-stone-500">{sessao?.nome}</span>
+          <Link
+            href="/painel/conta"
+            aria-current={atual.startsWith("/painel/conta") ? "page" : undefined}
+            title="Minha conta e troca de senha"
+            className={`underline-offset-2 hover:underline ${atual.startsWith("/painel/conta") ? "font-semibold text-marca" : "text-stone-500"}`}
+          >
+            {sessao?.nome ?? "Minha conta"}
+          </Link>
           <button onClick={sair} className="rounded-lg border border-stone-300 px-3 py-1">Sair</button>
         </div>
       </div>
