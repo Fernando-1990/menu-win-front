@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Carregando, Erro } from "@/components/Mensagem";
-import { api, ApiErro } from "@/lib/api";
+import { api, ApiErro, novaChave } from "@/lib/api";
 import { paraPedido, subtotal, totalItem } from "@/lib/carrinho";
 import { centavos, formatar, lerReais, paraApi } from "@/lib/dinheiro";
 import type { CriarPedido, LojaInfo, MetodoPagamento, PedidoCriado, TipoEntrega } from "@/lib/tipos";
@@ -51,6 +51,9 @@ export default function Checkout() {
   const [observacao, setObservacao] = useState("");
   const [enviando, setEnviando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
+  // Uma chave por tentativa de pedido nesta tela: se a resposta se perder (rede caiu) e o cliente
+  // tocar de novo em "Fazer pedido", a API devolve o pedido já criado em vez de mandar outro para a cozinha.
+  const [chave] = useState(novaChave);
 
   if (erroCardapio) return <Erro>{erroCardapio}</Erro>;
   if (!cardapio) return <Carregando />;
@@ -96,7 +99,7 @@ export default function Checkout() {
 
     setEnviando(true);
     try {
-      const criado = await api<PedidoCriado>(`/api/public/lojas/${slug}/pedidos`, { metodo: "POST", corpo: pedido });
+      const criado = await api<PedidoCriado>(`/api/public/lojas/${slug}/pedidos`, { metodo: "POST", corpo: pedido, chaveIdempotencia: chave });
       try {
         localStorage.setItem(CHAVE_CLIENTE, JSON.stringify(cliente));
         if (criado.pix) sessionStorage.setItem(`menuwin.pix.${criado.id}`, JSON.stringify(criado.pix));
