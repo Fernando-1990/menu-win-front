@@ -21,7 +21,12 @@ export interface LojaInfo {
   capaUrl: string | null;
   corPrimaria: string;
   layout: Layout;
+  /** Aceita pedido agora (fora da pausa e dentro do horário). */
   aberta: boolean;
+  /** O dono pausou os pedidos pelo painel. */
+  pausada: boolean;
+  /** Próximo horário de abrir, no horário de Brasília ("2026-11-25T06:00:00"); só fora do horário. */
+  abreEm: string | null;
   aceitaRetirada: boolean;
   aceitaDelivery: boolean;
   aceitaConsumoLocal: boolean;
@@ -226,4 +231,19 @@ export interface Operacao {
   taxaEntregaPadrao: number;
   pedidoMinimo: number;
   tempoPreparoMin: number;
+}
+
+/** 1 = segunda ... 7 = domingo. Fecha antes de abrir = vira a noite (18:00–02:00). Horas em "HH:mm". */
+export interface Horario {
+  diaSemana: number;
+  abre: string;
+  fecha: string;
+}
+
+export interface Funcionamento {
+  pedidosPausados: boolean;
+  aberta: boolean;
+  abreEm: string | null;
+  /** Vazio = sem horário = aceita pedido a qualquer hora. */
+  horarios: Horario[];
 }

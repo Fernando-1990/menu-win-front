@@ -37,6 +37,10 @@ Tailwind 4, Vitest. SSE: `@microsoft/fetch-event-source`.
   pedido mostra botões que chamam `POST /simulador-pix/{id}`. Nunca aparece com a API em produção.
 - Checkout manda `Idempotency-Key` (uma chave por visita à tela, `novaChave()` em `lib/api.ts`): se a resposta se
   perder e o cliente tocar de novo, a API devolve o mesmo pedido. 429 (limite de pedidos) mostra o `detail` da API.
+- Loja fechada: `lib/horario.ts` monta os textos (aberta / pausada / "abre amanhã às 07:00"). `abreEm` vem da API sem
+  fuso, já em Brasília; "hoje/amanhã" compara com a data de Brasília (`Intl`, `America/Sao_Paulo`), nunca a do aparelho.
+- Pausar pedidos fica na tela de Pedidos (`cozinha/PausaPedidos.tsx`, todos os papéis, relê a cada minuto);
+  horários ficam em Configurações (`configuracoes/HorariosForm.tsx`, só dono).
 - Deploy na Netlify (`netlify.toml`); passo a passo em `docs/DEPLOY.md` da API. O build falha sem
   `NEXT_PUBLIC_API_URL` de propósito (senão o site publicado chamaria `localhost:8080`).
 - `/painel` é rota fixa: uma loja não pode ter o slug "painel" (a API ainda não bloqueia; ver pendências).

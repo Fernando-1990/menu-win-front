@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { API_URL, type ApiErro } from "@/lib/api";
 import { centavos, formatar } from "@/lib/dinheiro";
 import { METODO_PAGAMENTO, STATUS_PAGAMENTO, TIPO_ENTREGA } from "@/lib/rotulos";
+import { PausaPedidos } from "./PausaPedidos";
 import type { PedidoCozinha, StatusPedido } from "@/lib/tipos";
 import { usePainel } from "../PainelContexto";
 
@@ -146,6 +147,8 @@ export function Tela() {
           </button>
         )}
       </div>
+
+      <PausaPedidos />
 
       {erro && <p role="alert" className="rounded-lg bg-red-50 p-2 text-sm text-red-800">{erro}</p>}
 

@@ -21,15 +21,15 @@ npm run dev                  # http://localhost:3000
 | `/{slug}` | Cliente | Cardápio da loja, com a cor dela, adicionais e carrinho |
 | `/{slug}/checkout` | Cliente | Comer aqui / retirar / entrega, dados, pagamento |
 | `/{slug}/pedido/{id}` | Cliente | Acompanhamento (e Pix: QR e copia-e-cola) |
-| `/painel/cozinha` | Todos do painel | Pedidos em tempo real (SSE), andamento, “recebi o pagamento” |
+| `/painel/cozinha` | Todos do painel | Pedidos em tempo real (SSE), andamento, “recebi o pagamento”, pausar/retomar pedidos |
 | `/painel/historico` | Dono e gerente | Pedidos por período e situação, resumo de vendas e detalhe com linha do tempo |
 | `/painel/cardapio` | Dono e gerente | Categorias, produtos e grupos de adicionais |
-| `/painel/configuracoes` | Dono | Como a loja atende e conta do Mercado Pago |
+| `/painel/configuracoes` | Dono | Como a loja atende, horário de funcionamento e conta do Mercado Pago |
 | `/painel/conta` | Todos do painel | Dados do usuário e troca de senha (link no nome, no topo) |
 
 ## Verificações
 ```bash
-npm test            # regras do carrinho (Vitest)
+npm test            # regras do carrinho e do horário (Vitest)
 npm run lint
 npm run typecheck
 npm run build

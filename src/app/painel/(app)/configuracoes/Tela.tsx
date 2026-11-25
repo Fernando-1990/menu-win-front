@@ -6,6 +6,7 @@ import type { ApiErro } from "@/lib/api";
 import { centavos, lerReais, paraApi } from "@/lib/dinheiro";
 import type { Operacao } from "@/lib/tipos";
 import { usePainel } from "../PainelContexto";
+import { HorariosForm } from "./HorariosForm";
 
 const campo = "mt-1 w-full rounded-lg border border-stone-300 bg-white p-2";
 const reais = (v: number) => (centavos(v) / 100).toFixed(2).replace(".", ",");
@@ -17,6 +18,7 @@ export function Tela() {
     <main className="mx-auto flex w-full max-w-2xl flex-col gap-6 p-4">
       <h1 className="text-xl font-bold">Configurações</h1>
       <OperacaoForm />
+      <HorariosForm />
       <MercadoPagoForm />
     </main>
   );

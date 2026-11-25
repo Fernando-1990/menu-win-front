@@ -6,6 +6,7 @@ import { Carregando, Erro } from "@/components/Mensagem";
 import { ProdutoModal } from "@/components/ProdutoModal";
 import { precoVigente, subtotal } from "@/lib/carrinho";
 import { centavos, formatar } from "@/lib/dinheiro";
+import { avisoLojaFechada, situacaoDaLoja } from "@/lib/horario";
 import type { ProdutoPublico } from "@/lib/tipos";
 import { useCarrinho } from "@/lib/useCarrinho";
 import { useLoja } from "./LojaContexto";
@@ -42,7 +43,7 @@ export default function CardapioPublico() {
           <div>
             <h1 className="text-2xl font-bold">{loja.nome}</h1>
             <p className="text-sm opacity-90">
-              {loja.aberta ? "Aberto agora" : "Fechado agora"}
+              {situacaoDaLoja(loja)}
               {loja.aceitaDelivery && ` · Entrega ${formatar(centavos(loja.taxaEntrega))}`}
               {loja.pedidoMinimo > 0 && ` · Pedido mínimo ${formatar(centavos(loja.pedidoMinimo))}`}
             </p>
@@ -52,7 +53,7 @@ export default function CardapioPublico() {
 
       {!loja.aberta && (
         <p className="bg-amber-100 p-3 text-center text-sm text-amber-900">
-          A loja está fechada agora. Você pode ver o cardápio, mas os pedidos estão pausados.
+          {avisoLojaFechada(loja)}
         </p>
       )}
 

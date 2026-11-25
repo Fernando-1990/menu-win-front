@@ -7,6 +7,7 @@ import { Carregando, Erro } from "@/components/Mensagem";
 import { api, ApiErro, novaChave } from "@/lib/api";
 import { paraPedido, subtotal, totalItem } from "@/lib/carrinho";
 import { centavos, formatar, lerReais, paraApi } from "@/lib/dinheiro";
+import { avisoLojaFechada } from "@/lib/horario";
 import type { CriarPedido, LojaInfo, MetodoPagamento, PedidoCriado, TipoEntrega } from "@/lib/tipos";
 import { TIPO_ENTREGA } from "@/lib/rotulos";
 import { useCarrinho } from "@/lib/useCarrinho";
@@ -213,7 +214,7 @@ export default function Checkout() {
         </section>
 
         {erro && <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-800">{erro}</p>}
-        {!loja.aberta && <p className="rounded-lg bg-amber-100 p-3 text-sm text-amber-900">A loja está fechada agora.</p>}
+        {!loja.aberta && <p className="rounded-lg bg-amber-100 p-3 text-sm text-amber-900">{avisoLojaFechada(loja)}</p>}
 
         <button
           type="submit"
